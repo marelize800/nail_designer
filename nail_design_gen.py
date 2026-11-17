@@ -2,9 +2,34 @@ import streamlit as st
 import random as r
 
 
-nail_shapes = ['square','almond','lipstick','round','oval','sqoval','soft square','russian almond','coffin','stilleto','arrowhead','mountain peak','edge','duck','ballerina','oval']
 
-colors = ['peach','pink','brown','light pink','cherry','white','baby pink','clear','caramel','milky']
+
+
+nail_shapes = [
+    "Square",
+    "Almond",
+    "Lipstick",
+    "Round",
+    "Oval",
+    "Sqoval",
+    "Soft Square",
+    "Russian Almond",
+    "Coffin",
+    "Stiletto"
+]
+
+colors = [
+    "#FDF5E6", "#FAF0E6", "#F5F5DC", "#FAFAD2", "#FFF8DC",
+    "#F5DEB3", "#FFE4C4", "#FFDEAD", "#F4EBE1", "#E8D3C3",
+    "#DEB887", "#D2B48C", "#C4A482", "#BC8F8F", "#D8B4A0",
+    "#C19A6B", "#B69B84", "#A67B5B", "#8C6239", "#FFDAB9",
+    "#FFCBC4", "#F9D5C5", "#E8C3B9", "#DDA79A", "#C99385",
+    "#B57F73", "#E0A99D", "#F2CC8F", "#E7BC91", "#B38B6D",
+    "#A38068", "#94725C", "#82634E", "#705340", "#C2B280",
+    "#B3A17B", "#9E8B69", "#8A7959", "#76664A", "#63553C",
+    "#B8A293", "#A48F82", "#917C71", "#7D6960", "#6A574E",
+    "#EAD9CD", "#D9C3B0", "#C8AC95", "#B7967A", "#A6805F"
+]
 
 bases = ["#345123",
 "#488337",
@@ -155,7 +180,7 @@ bases = ["#345123",
 "#478128"
 ]
 
-designs = ['french tips','chrome','cateye','3D shapes','ombre','abstract','handpainted','chuncky']
+designs = ['French tips','chrome','cateye','3D shapes','ombre','abstract','handpainted','chunky']
 lengths = ['short','medium','long','extra long','extremely long']
 
 
@@ -170,7 +195,74 @@ st.text('Generate a color,style,base color, and design with one click!')
 st.divider()
 
 
-with st.container(border=True):
+# c1,c2 = st.columns(2)
+
+# with c1:
+# 	st.subheader('Primary Color')
+# 	with st.container(key='base_color'):
+# 		st.text('Primary Color')
+
+# with c2:
+# 	st.subheader('Base Color')
+# 	with st.container(key='nude_color'):
+# 		st.text('Base Color')
+
+with st.container(border=False):
 	if st.button('Generate my desing'):
-		output = f'{pick_shape}\n{pick_nude}\n{pick_base}\n{pick_des}\n{pick_len}'
-		st.text_area(label='Your nail design is below:',value=output,height=200)
+		c1,c2 = st.columns(2)
+		with c1:
+			st.subheader('Primary Color')
+			with st.container(key='base_color'):
+				st.text('Primary Color')
+
+		with c2:
+			st.subheader('Base Color')
+			with st.container(key='nude_color'):
+				st.text('Base Color')
+
+		st.subheader('Nail Shape')
+		if pick_shape == "Square":
+			st.image('images/square.png',width=150)
+		if pick_shape == "Almond":
+			st.image('images/almond.png',width=150)
+		if pick_shape == "Lipstick":
+			st.image('images/lipstick.png',width=150)
+		if pick_shape == "Round":
+			st.image('images/round.png',width=150)
+		if pick_shape == "Oval":
+			st.image('images/oval.png',width=150)
+		if pick_shape == "Sqoval":
+			st.image('images/sqoval.png',width=150)
+		if pick_shape == "Soft Square":
+			st.image('images/soft_square.png',width=150)
+		if pick_shape == "Russian Almond":
+			st.image('images/russian_almond.png',width=150)
+		if pick_shape == "Coffin":
+			st.image('images/coffin.png',width=150)
+		if pick_shape == "Stiletto":
+			st.image('images/stiletto.png',width=150)
+
+st.html(f"""
+<style>
+.st-key-base_color{{
+	border-radius: 999px;
+	background-color: {pick_base};
+	min-width: 100px;
+	min-height: 50px;
+	display:flex;
+	flex-direction:row;
+	justify-content:center;
+	align-items:center
+	}}
+.st-key-nude_color{{
+	border-radius: 999px;
+	background-color: {pick_nude};
+	min-width: 100px;
+	min-height: 50px;
+	display:flex;
+	flex-direction:row;
+	justify-content:center;
+	align-items:center
+	}}
+</style>
+	""")
